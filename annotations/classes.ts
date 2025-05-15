@@ -1,23 +1,22 @@
 class Vehicle {
-  drive(): void {
-    console.log('Vroom Vroom');
-  }
-  honk(): void {
-    console.log('Beep Beep');
+  constructor(public color: string) {}
+  protected honk(): void {
+    console.log('beep');
   }
 }
 
-class Car extends Vehicle {
-  drive(): void {
-    console.log('Vroom Vroom from Car');
-  }
-  honk(): void {
-    console.log('Beep Beep from Car');
-  }
-}
-const car = new Car();
-car.drive();
-car.honk();
+const vehicle = new Vehicle('orange');
+console.log(vehicle.color);
+
+// class Car extends Vehicle {
+//  private drive(): void {
+//    console.log('vroom');
+//  }
+//  startDrivingProcess(): void {
+//    this.drive();
+//    this.honk();
+//  }
+// }
 
 export {}
 // If files are not modules (i.e., they don’t have import/export statements), 
