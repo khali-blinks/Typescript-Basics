@@ -1,7 +1,14 @@
 <html>
   <body>
     <div id="map" style="height: 100%"></div>
-    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwRNFksnxRXxiGVTLeQGaWOyJ7qJzH8M&callback=Function.prototype"></script>
+    <script async
+    src="https://maps.googleapis.com/maps/api/js?key=AIzaSyAXwRNFksnxRXxiGVTLeQGaWOyJ7qJzH8M&loading=async&libraries=marker&callback=initMap">
+    </script>
     <script type="module" src="./src/index.ts"></script>
+    <script>
+      function initMap() {
+        console.log('Maps API loaded');
+      }
+    </script>
   </body>
 </html>
