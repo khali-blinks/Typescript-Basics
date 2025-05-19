@@ -1,5 +1,13 @@
-import { User } from './Users';
-import { Company } from './Company';
+// Instructions to every othrt class
+// on how yhey can be an argument to 'addMarker'
+
+export interface Mappable {
+  location: {
+    lat: number;
+    lng: number;
+  };
+  markerContent(): string;
+}
 
 
 export class CustomMap {
@@ -13,28 +21,27 @@ export class CustomMap {
     });
   }
 
-  async addUserMarker(user: User): Promise<void> {
-    // Load the marker library
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as typeof google.maps.marker;
+  async addMarker(mappable: Mappable): Promise<void> {
+    // Load required libraries
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as google.maps.MarkerLibrary;
+    const { InfoWindow } = await google.maps.importLibrary("maps") as google.maps.MapsLibrary;
     
-    new AdvancedMarkerElement({
+    const marker = new AdvancedMarkerElement({
       map: this.googleMap,
       position: {
-        lat: user.location.lat,
-        lng: user.location.lng
+        lat: mappable.location.lat,
+        lng: mappable.location.lng
       }
     });
-  }
 
-  async addCompanyMarker(company: Company): Promise<void> {
-    // Load the marker library
-    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as typeof google.maps.marker;
-    new AdvancedMarkerElement({
-      map: this.googleMap,
-      position: {
-        lat: company.location.lat,
-        lng: company.location.lng
-      }
-    })
+    marker.addListener('gmp-click', () => {
+      const infoWindow = new InfoWindow({
+        content: mappable.markerContent()
+      });
+      infoWindow.open({
+        map: this.googleMap,
+        anchor: marker
+      });
+    });
   }
 }
