@@ -22,8 +22,19 @@ export class CustomMap {
       position: {
         lat: user.location.lat,
         lng: user.location.lng
-      },
-      title: user.name
+      }
     });
+  }
+
+  async addCompanyMarker(company: Company): Promise<void> {
+    // Load the marker library
+    const { AdvancedMarkerElement } = await google.maps.importLibrary("marker") as typeof google.maps.marker;
+    new AdvancedMarkerElement({
+      map: this.googleMap,
+      position: {
+        lat: company.location.lat,
+        lng: company.location.lng
+      }
+    })
   }
 }
