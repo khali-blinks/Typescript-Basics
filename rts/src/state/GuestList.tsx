@@ -2,7 +2,7 @@ import { useState } from "react"
 
 export const GuestList : React.FC = () => {
   const [ name, setName] = useState('');
-  const [ guests, setGuests] = useState([])
+  const [ guests, setGuests] = useState<String[]>([])
 
   const onClick = () => {
     setName('');
