@@ -3,7 +3,9 @@ import { Child } from './Child';
 export const Parent = () => {
   return (
     <div>
-      <Child />
+      <Child color='red' onClick={()=> console.log('clicked')}>
+        ghjggjhj
+        </Child>
     </div>
   );
 }
