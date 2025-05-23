@@ -22,3 +22,4 @@ const App = () => {
 root.render(<App />);
 // ReactDOM.render(<App />, el);
 // ReactDOM.render is the old way of rendering a React component to the DOM.
+// ReactDOM.createRoot is the new way of rendering a React component to the DOM.
